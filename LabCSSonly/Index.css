@@ -1,0 +1,98 @@
+body{
+    margin: 0;
+    block-size: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #a48a7b;
+  }
+  .panda{
+    inline-size: 17.5rem;
+    block-size: 12.5rem;
+    border: 5px solid #000;
+    border-radius: 50%;
+    position: relative;
+    background-color: white;
+  }
+  .ear{
+    position: absolute;
+    background-color: #000;
+    inline-size: 6rem;
+    block-size: 6rem;
+    border-radius: 3rem;
+    z-index: -1;
+  }
+  .left_ear{
+    inset-block-start: -2rem;
+    inset-inline-start: 0;
+  }
+  .right_ear{
+    inset-block-start: -2rem;
+    inset-inline-end: 0;
+  }
+  .eye{
+    inline-size: 4rem;
+    block-size: 4rem;
+    border-radius: 50%;
+    background-color: #000;
+    position: absolute;
+  }
+  .eye::after{
+    content: '';
+    inline-size: 2rem;
+    block-size: 2rem;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    inset-block-start: .5rem;
+    inset-inline-end: .5rem;
+  }
+  .eye::before{
+    content: '';
+    inline-size: 1rem;
+    block-size: 1rem;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    inset-block-start: 2.2rem;
+    inset-inline-end: 2.2rem;
+  }
+  .left_eye{
+    inset-block-start: 2.5rem;
+    inset-inline-start: 2.5rem;
+  }
+  .right_eye{
+    inset-block-start: 2.5rem;
+    inset-inline-end: 2.5rem;
+  }
+  .nose{
+    position: absolute;
+    inline-size: 2.5rem;
+    block-size: 1.8rem;
+    inset-block-end: 3.5rem;
+    background-color: #000;
+    border-radius: 50%;
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
+  }
+  .mouth{
+    position: absolute;
+    inline-size: 2rem;
+    block-size: 1rem;
+    border: 5px solid #000;
+    inset-inline-start: 50%;
+    inset-block-end: 2.2rem;
+    transform: translateX(-50%);
+    border-radius: 0 0 2rem 2rem; 
+    border-block-start: 0;
+  }
+  .mouth::after{
+    content: '';
+    inline-size: .4rem;
+    block-size: 1rem;
+    position: absolute;
+    inset-inline-start: 50%;
+    background-color: #000;
+    transform: translateX(-50%);
+    z-index: -1;
+  }
