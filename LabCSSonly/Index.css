@@ -10,7 +10,7 @@ body {
   display: grid;
   place-items: center;
   block-size: 100vh;
-  background-color: #f0f0f0;
+  background: linear-gradient(45deg, #86a8e7, #7f74b7);
 }
 
 .stan {
@@ -73,7 +73,7 @@ body {
 
 .stan .eye.eye-left {
   inset-block-end: 4rem;
-  inset-inline-start: 2rem; /* Ajuste de la posición */
+  inset-inline-start: 2rem;
   transform: rotate(120deg);
 }
 
@@ -84,7 +84,7 @@ body {
 
 .stan .eye.eye-right {
   inset-block-end: 4rem;
-  inset-inline-end: 2rem; /* Ajuste de la posición */
+  inset-inline-end: 2rem;
   transform: rotate(-120deg);
 }
 
