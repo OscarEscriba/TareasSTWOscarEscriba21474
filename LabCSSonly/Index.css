@@ -1,98 +1,96 @@
+:root{
+  --blue: #4b70eb;
+  --red: #e64040;
+  --white: #FFF;
+  --black: #000;
+}
 body{
-    margin: 0;
-    block-size: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #a48a7b;
-  }
-  .panda{
-    inline-size: 17.5rem;
-    block-size: 12.5rem;
-    border: 5px solid #000;
-    border-radius: 50%;
-    position: relative;
-    background-color: white;
-  }
-  .ear{
-    position: absolute;
-    background-color: #000;
-    inline-size: 6rem;
-    block-size: 6rem;
-    border-radius: 3rem;
-    z-index: -1;
-  }
-  .left_ear{
-    inset-block-start: -2rem;
-    inset-inline-start: 0;
-  }
-  .right_ear{
-    inset-block-start: -2rem;
-    inset-inline-end: 0;
-  }
-  .eye{
-    inline-size: 4rem;
-    block-size: 4rem;
-    border-radius: 50%;
-    background-color: #000;
-    position: absolute;
-  }
-  .eye::after{
-    content: '';
-    inline-size: 2rem;
-    block-size: 2rem;
-    background-color: white;
-    border-radius: 50%;
-    position: absolute;
-    inset-block-start: .5rem;
-    inset-inline-end: .5rem;
-  }
-  .eye::before{
-    content: '';
-    inline-size: 1rem;
-    block-size: 1rem;
-    background-color: white;
-    border-radius: 50%;
-    position: absolute;
-    inset-block-start: 2.2rem;
-    inset-inline-end: 2.2rem;
-  }
-  .left_eye{
-    inset-block-start: 2.5rem;
-    inset-inline-start: 2.5rem;
-  }
-  .right_eye{
-    inset-block-start: 2.5rem;
-    inset-inline-end: 2.5rem;
-  }
-  .nose{
-    position: absolute;
-    inline-size: 2.5rem;
-    block-size: 1.8rem;
-    inset-block-end: 3.5rem;
-    background-color: #000;
-    border-radius: 50%;
-    inset-inline-start: 50%;
-    transform: translateX(-50%);
-  }
-  .mouth{
-    position: absolute;
-    inline-size: 2rem;
-    block-size: 1rem;
-    border: 5px solid #000;
-    inset-inline-start: 50%;
-    inset-block-end: 2.2rem;
-    transform: translateX(-50%);
-    border-radius: 0 0 2rem 2rem; 
-    border-block-start: 0;
-  }
-  .mouth::after{
-    content: '';
-    inline-size: .4rem;
-    block-size: 1rem;
-    position: absolute;
-    inset-inline-start: 50%;
-    background-color: #000;
-    transform: translateX(-50%);
-    z-index: -1;
-  }
+  margin: 0;
+  display: grid;
+  place-items: center;
+  block-size: 100vh;
+}
+.stan{
+  inline-size: 100%;
+  position: relative;
+  block-size: max-content;
+}
+.stan::after{
+  content: '';
+  inline-size: 4rem;
+  block-size: 4rem;
+  border-radius: 50%;
+  background-color: var(--red);
+  inset-block-start: -2.5rem;
+  inset-inline-start: 50%;
+  transform: translate(-50%, .5rem);
+  position: absolute;
+}
+.head{
+  inline-size: 17.5rem;
+  margin: 0 auto;
+  border-radius: 50%;
+  aspect-ratio: 1/1;
+  background-color: rgb(250, 221, 167);
+  position: relative;
+  overflow: hidden;
+}
+.head::after{
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  inset-inline-start: 0;
+  background-color: var(--blue);
+  block-size: 6rem;
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 2rem var(--red);
+}
+.eye{
+  inline-size: 5.5rem;
+  block-size: 4rem;
+  background-color: var(--white);
+  border-radius: 50%;
+  position: absolute;
+}
+.eye::before{
+  content: '';
+  block-size: 1rem;
+  inline-size: 1rem;
+  background-color: var(--black);
+  position: absolute;
+  border-radius: 50%;
+}
+.eye.eye-left{
+  inset-block-end: 4rem;
+  inset-inline-start: 3.8rem;
+  transform: rotate(120deg);
+}
+.eye.eye-left::before{
+  inset-block-start: 1.4rem;
+  inset-inline-start: 1.2rem;
+}
+.eye.eye-right{
+  inset-block-end: 4rem;
+  inset-inline-end: 4rem;
+  transform: rotate(-120deg);
+}
+.eye.eye-right::before{
+  inset-block-end: 1.5rem;
+  inset-inline-end: 1.2rem;
+  transform: rotate(120deg);
+}
+.mouth{
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-end: 1.5rem;
+  inline-size: 4rem;
+  block-size: .8rem;
+  border-radius: 50%;
+  border: 2px solid var(--black);
+  border-block-start: transparent;
+  border-inline-start: transparent;
+  border-inline-end: transparent;
+  /* background-color: var(--black); */
+  transform: translateX(-50%);
+}
