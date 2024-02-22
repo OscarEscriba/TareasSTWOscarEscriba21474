@@ -96,3 +96,17 @@ body{
     border: none;
     font-size: 16px; 
 }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Aplica la animación a la clase fade-in */
+.fade-in {
+    animation: fadeIn 0.5s ease-out; /* Ajusta la duración y el tipo de animación según tus preferencias */
+}

@@ -10,6 +10,9 @@ function enviarMensaje() {
         nuevoMensaje.className = "chat";
         nuevoMensaje.textContent = mensaje;
 
+        // agrega la clase de animacion de desvanecimiento
+        nuevoMensaje.classList.add("fade-in");
+        
         // Agrega el nuevo mensaje al contenedor de mensajes
         var contenedorMensajes = document.getElementById("mensaje");
         contenedorMensajes.appendChild(nuevoMensaje);
