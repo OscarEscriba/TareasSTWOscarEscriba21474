@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAGINA REACT</title>
+     <!-- Babel CDN -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+     <!-- React CDN -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.development.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
+
+</head>
+<body> 
+    <div id="root"></div>
+    <div class="body">
+    <div id="root1"></div>
+    <div id="card"></div>
+    </div>
+    <!-- COMPONENTES -->
+    <script src="header.js" type="text/babel"></script>
+    <script src="sidebar.js" type="text/babel"></script>
+    <script src="card.js" type="text/babel"></script>
+    <!-- siempre poner type text/babel -->
+    <script  type="text/babel">
+        const { Header, Sidebar, Card } = window; // Obtener los componentes Header y Sidebar desde window
+    
+        ReactDOM.render(<Header name="My App" />, document.getElementById('root'));
+        ReactDOM.render(
+          <Sidebar>
+            <h2>Sidebar Content</h2>
+          </Sidebar>,
+          document.getElementById('root1')
+        );
+        ReactDOM.render(<Card nombre="Juan Perez" descripcion="Descripción del Card" imagenUrl={imagenBase64} />, document.getElementById('card'));
+      </script>
+    </body>
+    <style>
+        .body{
+            display: flex;
+        }
+    </style>
+</html>
+
+<!-- los componentes con app es estructura un poco distinta, no aplicamos mandar a llamar todo desde un app si 
+si no desde distintos divs-->
