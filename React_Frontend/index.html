@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAGINA REACT</title>
+     <!-- Babel CDN -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+     <!-- React CDN -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.development.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.development.js"></script>
+     <!-- Componentes -->
+    <script src="header.js" type="text/babel"></script>
+    <script src="sidebar.js" type="text/babel"></script>
+    <script src="card.js" type="text/babel"></script>
+    <script src="NewsDetail.js" type="text/babel"></script>
+    <script src="NavigationBar.js" type="text/babel"></script>
+    <script src="PostForm.js" type="text/babel"></script> 
+    <script src="Alert.js" type="text/babel"></script> 
+    <script src="NoData.js" type="Text/babel"></script>
+
+</head>
+<style>
+   /* Estilos para el cuerpo de la página */
+   body, html {
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow-x: hidden; /* Evita el scroll horizontal */
+}
+/* Estilos para el contenedor principal */
+.body {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+/* Estilos para el contenedor de las noticias */
+#container {
+    display: flex;
+    flex-direction: column;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+}
+/* Estilos para el contenedor de las tarjetas */
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+/* Estilos para las tarjetas */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    margin-top: 20px;
+}
+.card img {
+    width: 100%;
+    height: auto;
+}
+.card .container {
+    padding: 20px;
+}
+.card h4 {
+    margin-top: 0;
+}
+.card p {
+    margin-bottom: 0;
+}
+#root {
+    width: 200vh;
+}
+/* Estilos para la animación de carga */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loading-animation {
+    border: 8px solid rgba(0, 0, 0, 0.1);
+    border-top: 8px solid #333;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+} 
+#Texto1 {
+    color: #4a6be0;
+    align-items: center;
+    text-align: center;
+}
+#Texto {
+    background: linear-gradient(to bottom, rgba(156, 210, 211, 0.8), rgba(156, 210, 211, 1));
+
+
+}
+
+
+.post-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.post-form {
+    width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="datetime-local"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+@media screen and (max-width: 600px) {
+    /* Estilos para pantallas pequeñas */
+
+    /* Sidebar */
+    .sidebar {
+        width: 1%; /* O ajusta el ancho según tus necesidades */
+    }
+
+    /* Header */
+    .header {
+        width: auto;/* O ajusta el espaciado según tus necesidades */
+    }
+
+    /* Card */
+    .card {
+        width: 100%; /* O ajusta el ancho según tus necesidades */
+    }
+
+    /* PostForm */
+    .post-form {
+        width: 90%; /* Ancho del formulario */
+        max-width: 90%; /* Máximo ancho del formulario */
+    }
+}
+</style>
+<body> 
+    <div class="body">
+    <div id="root1"></div> 
+            <div id="container"> 
+            <div id="root"></div>
+            <div id="cards" >
+                <div id="loading-animation"></div>
+            </div>
+            <div id="Texto"><h2 id="Texto1">Es hora de que hagas un aporte en este grandioso blog</h2></div>
+            <div id="Post"></div>
+            </div>
+    </div>
+    <!-- COMPONENTES -->
+    <script type="text/babel">
+        ReactDOM.render(<Sidebar />, document.getElementById('root1'))
+        ReactDOM.render(<Header name="Blog Tecnologico"/>, document.getElementById('root'))
+        
+        async function fetchData() {
+            try {
+                // Mostrar la animación de carga
+              //  showAlert("Bienvenido a la informacion del api")
+                document.getElementById('loading-animation').style.display = 'block';
+
+                const response = await fetch('http://localhost:3000/posts');
+                const data = await response.json();
+                // implementacion del EmptyState
+                if (data.length === 0) {
+                    ReactDOM.render(<EmptyState message="No hay datos cargados..."/>, document.getElementById('root'))
+                } else {
+                    // Renderizar las tarjetas de noticias si hay publicaciones
+                    const cards = data.map((item, index) => (
+                        <Card
+                            key={index}
+                            nombre={item.title}
+                            descripcion={item.content}
+                            imagenUrl={item.imagenUrl}
+                        />
+                    ));
+                    ReactDOM.render(
+                        <div>{cards}</div>,
+                        document.getElementById('cards')
+                    );
+                }
+        
+                // Ocultar la animación de carga cuando se recibe la respuesta
+                document.getElementById('loading-animation').style.display = 'none';
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                // En caso de error, también deberías ocultar la animación de carga
+                document.getElementById('loading-animation').style.display = 'none';
+                showAlert('Error al obtener los datos. Por favor, inténtalo de nuevo más tarde.');
+
+            }
+        }
+        fetchData();
+        ReactDOM.render(<PostForm />, document.getElementById('Post')); 
+    </script>
+</body>
+</html>
