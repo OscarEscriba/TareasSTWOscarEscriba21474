@@ -22,4 +22,3 @@ const Button = ({ onClick, text }) => {
 }
 
 export default Button; 
-// codigo para 

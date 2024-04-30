@@ -8,7 +8,7 @@ const App = () => {
   }; 
 
   return (
-    <div> 
+   <div style={{ overflowX: 'hidden', overflowY: 'hidden' }}>
       <Header />
       <h1> PRUEBA DE BOTON </h1>
       <Button onClick={handleClick} text="Haz click en el boton" />
