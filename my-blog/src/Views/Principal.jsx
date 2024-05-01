@@ -86,8 +86,10 @@ const Principal = () =>  {
         marginTop: 0, // Espacio superior para separar las tarjetas del Header
     }
     const cardsContainter = {
-        marginLeft: '20%'
-    }
+        marginLeft: '20%',
+        maxHeight: '100vh', // Altura máxima del contenedor de las tarjetas
+        overflowY: 'auto' // Agrega scroll vertical si el contenido excede la altura máxima
+      }
 
     return (
         <div className="Principal" style={conteinerStyle}>

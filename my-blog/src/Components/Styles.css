@@ -1,1 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* animacion del titulo */
+@keyframes changeColor {
+    0% { color: #39FF14; } /* Color inicial */
+    50% { color: #FF5733; } /* Color intermedio */
+    100% { color: #39FF14; } /* Color final, igual al inicial */
+  }
+  @keyframes moveUp {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  h1 {
+    animation: moveUp 3s infinite; /* Aplica la animación durante 3 segundos y se repite infinitamente */
+  }
