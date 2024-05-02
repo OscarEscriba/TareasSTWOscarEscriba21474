@@ -1,0 +1,49 @@
+/* Estilo base del menú */
+.sidebar-menu {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Oculta el menú fuera del lado izquierdo de la pantalla */
+    width: 300px; /* Ancho del menú */
+    height: 100%;
+    background-color: #0b4f4d; /* Color de fondo del menú */
+    transition: left 0.3s ease; /* Transición suave para mostrar/ocultar el menú */
+    z-index: 1000; /* Asegura que el menú esté sobre otros elementos */
+  }
+  
+  /* Estilo para cuando el menú está abierto */
+  .sidebar-menu.open {
+    left: 0; /* Muestra el menú en el lado izquierdo de la pantalla */
+  }
+  
+  /* Estilo para el contenido del menú */
+  .menu-content {
+    padding: 20px;
+  }
+  
+  /* Estilo para la lista de elementos del menú */
+  .menu-content ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  /* Estilo para los elementos de la lista del menú */
+  .menu-content li {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
+  /* Estilo para el botón de cerrar el menú */
+  .menu-content button {
+    background-color: #ff5733; /* Color de fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  /* Estilo para el botón de cerrar el menú al pasar el mouse */
+  .menu-content button:hover {
+    background-color: #ff6f59; /* Color de fondo del botón al pasar el mouse */
+  }
+  

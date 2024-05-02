@@ -9,6 +9,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 3; /* Ajusta el valor de zIndex para que sea mayor que el de las tarjetas */
+
 }
 
 /* Estilo para el contenido del modal */

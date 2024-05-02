@@ -8,7 +8,7 @@ import './Styles.css';  // importamos los estilos que queremos utilizar...
 import AddPostModal from './PostModal';
 import Button from './Button'; 
 import { Link } from 'react-router-dom';
-
+import SidebarMenu from './SideBarMenu';
 // la font a utilizar: 
 
 /* 
@@ -20,6 +20,7 @@ npm install axios
 const Header = (props) => {
     // el modal para ingresar un nuevo POST
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Estado para controlar si el menú lateral está abierto
 
 
      // Función para manejar el cambio de categoría seleccionada
@@ -34,7 +35,18 @@ const Header = (props) => {
     const closeModal = () => {
         setIsModalOpen(false);
     };
-    const Header = { 
+
+    
+    const openSidebar = () => {
+        setIsSidebarOpen(true);
+    };
+
+    const closeSidebar = () => {
+        setIsSidebarOpen(false);
+    };
+    // Agrega isSidebarOpen como una prop en SidebarMenu
+<SidebarMenu isOpen={isSidebarOpen} onClose={closeSidebar} />
+    const HeaderStyle = { 
         textAlign: "center", 
         color: 'white', 
         backgroundColor: '#114c5f', 
@@ -111,7 +123,7 @@ const Header = (props) => {
     // ------ M E T O D O S ----------
 
   return (
-    <header style={Header}>
+    <header style={HeaderStyle}>
         <div className='DivGeneral' style={DivGeneral} >
 
             <div className='DivTextoYtitulo' style={TextoYTitulo}>
@@ -123,7 +135,7 @@ const Header = (props) => {
 
       <div style={buttonStyle}>
         <div>
-            <h1> USUARIO </h1>
+        <div className="user-button" onClick={openSidebar}>USUARIO</div>
         </div>
         <div>
         <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
@@ -150,6 +162,7 @@ const Header = (props) => {
                     </ul>
                 </nav>
       </div>
+      <SidebarMenu isOpen={isSidebarOpen} onClose={closeSidebar} />
     </header>
   );
 };
@@ -159,7 +172,6 @@ Header.propTypes = {
   name: PropTypes.string.isRequired,
   categorias: PropTypes.array.isRequired,
    onCategoryChange: PropTypes.func.isRequired,
-    openModal: PropTypes.func.isRequired,
     vistaActual: PropTypes.string.isRequired
 };
 

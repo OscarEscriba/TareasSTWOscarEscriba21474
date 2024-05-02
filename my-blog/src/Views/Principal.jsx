@@ -4,6 +4,7 @@ import Header from "../Components/Header";
 import Card from "../Components/Card";
 import tuImagen from './imagenFondo.jpg'; 
 import { useLocation } from "react-router-dom";
+import SidebarMenu from "../Components/SideBarMenu";
 //import axios from "axios";
 
 /* datos de la base de datos
@@ -22,7 +23,18 @@ const Principal = () =>  {
     const rutaActual = location.pathname;
     const nombreRuta = rutaActual.split('/').pop(); // Obtén el último segmento de la ruta
 
+const [isModalOpen, setIsModalOpen] = useState(false);
 
+        // Dentro del componente Principal
+const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+const openSidebar = () => {
+    setIsSidebarOpen(true);
+};
+
+const closeSidebar = () => {
+    setIsSidebarOpen(false);
+};
 
     useEffect(() => {
         fetchData(); // Llama a la función fetchData al montar el componente
@@ -91,7 +103,9 @@ const Principal = () =>  {
     marginTop: '50px',
     cursor: 'pointer',
     transition: 'transform 0.3s ease', // Agregar transición para efecto al pasar el mouse
-    transform: 'perspective(500px) rotateY(0deg)' // Inicialmente no rotado
+    transform: 'perspective(500px) rotateY(0deg)', // Inicialmente no rotado
+    zIndex: isModalOpen ? 0 : 2 // Define el z-index de las tarjetas dependiendo de si el modal está abierto o no
+
     }
      // Agregar efecto de rotación al pasar el mouse sobre la tarjeta
 const handleCardHover = (event) => {
@@ -131,7 +145,8 @@ const handleCardLeave = (event) => {
         '-ms-overflow-style': 'none', // Oculta la barra de desplazamiento en Internet Explorer y Edge
         '&::-webkit-scrollbar': {
             display: 'none' // Oculta la barra de desplazamiento en Chrome, Safari y Opera
-        }
+        },
+        
     }
 
     return (
@@ -141,7 +156,9 @@ const handleCardLeave = (event) => {
                  categorias={['Principal','Tecnologia', 'Ciencia', 'IA', 'Electronicos']} 
                  onCategoryChange={handleCategoryChange} 
                  vistaActual={nombreRuta}
+                 openSidebar={openSidebar} // Paso de la función para abrir el menú lateral
                 />
+                <SidebarMenu isOpen={isSidebarOpen} onClose={closeSidebar} />
             </div>
             <div style={infoContainer} className="background-container">
             <div style={SidebarStyle}>
