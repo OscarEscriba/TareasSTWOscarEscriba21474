@@ -1,0 +1,88 @@
+/* Estilo para el fondo oscuro del modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo para el contenido del modal */
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-width: 600px;
+    width: 90%;
+}
+
+/* Estilo para el botón de cerrar */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 50px;
+    color: #666;
+}
+
+.close:hover {
+    color: #000;
+}
+
+/* Estilo para el título del modal */
+h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Estilo para los campos del formulario */
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #005a5e;
+    text-align: left;
+    font-weight: bold; /* Hace que el texto del label aparezca en negrita */
+}
+
+/* animaciones para el titulo */ 
+@keyframes changeColor {
+    0% { color: #333; } /* Color inicial */
+    50% { color: #ff5733; } /* Color intermedio */
+    100% { color: #333; } /* Color final, igual al inicial */
+}
+
+/* Animación de movimiento */
+@keyframes moveUp {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.Titulo {
+    color: #005a5e;
+    font-size: 24px; /* Cambia el tamaño del texto */
+    font-weight: bold; /* Hace que el texto aparezca en negrita */
+    margin-bottom: 10px; /* Agrega un espacio debajo del título */
+    animation: changeColor 3s infinite, moveUp 2s infinite;
+}
+.titulo-container {
+    display: flex;
+    align-items: center; /* Centra verticalmente los elementos */
+    flex-direction: row;
+    justify-content: center;
+}
+.Boton{ 
+    margin-top: 3vh;
+}

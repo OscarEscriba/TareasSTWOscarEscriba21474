@@ -1,24 +1,44 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import '@fontsource/jersey-20'; // Importa la fuente Jersey 20
 import LogoSVG from '../logoApp.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import './Styles.css';  // importamos los estilos que queremos utilizar...
+import AddPostModal from './PostModal';
+import Button from './Button'; 
+import { Link } from 'react-router-dom';
 
 // la font a utilizar: 
 
 /* 
 npm install @fontsource/jersey-20
 npm install --save @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
+npm install axios
 */
 
 const Header = (props) => {
+    // el modal para ingresar un nuevo POST
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+     // Función para manejar el cambio de categoría seleccionada
+     const handleCategoryClick = (category) => {
+        props.onCategoryChange(category);
+      };
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
     const Header = { 
         textAlign: "center", 
         color: 'white', 
         backgroundColor: '#114c5f', 
-        height: "35vh", // altura del header...
+        height: "27vh", // altura del header...
         display: "flex",
         flexDirection: 'column',
         justifyContent: "center", 
@@ -31,7 +51,7 @@ const Header = (props) => {
     const estiloTexto = {
         fontFamily: '"Jersey 20", sans-serif',  // Establece la fuente como "Jersey 20"
         color: '#39FF14',
-        fontSize: '10vh',
+        fontSize: '7.5vh',
         letterSpacing: '2vh', /* Aumenta el espaciado entre letras */
         animation: 'moveUp 1.5s infinite, changeColor 3s infinite'
     }
@@ -45,11 +65,13 @@ const Header = (props) => {
         cursor: 'pointer',
        // marginLeft: 'auto', // Coloca el botón al final del header
         marginRight: '2%', // Añade un espacio entre el botón y el texto
-        marginLeft: '2%'
+        marginLeft: '2%',
+        height: '2vh',
+        marginBottom: '3vh'
     }
     
     const buttonText = {
-        marginRight: '10px', // Espacio entre el ícono y el texto
+        marginRight: '1px', // Espacio entre el ícono y el texto
     }
     const TextoYTitulo = {
         display: 'flex', 
@@ -81,15 +103,12 @@ const Header = (props) => {
         padding: '0', 
         display: 'flex', 
         flexDirection: 'row', 
-        alignItems: 'center' 
+        alignItems: 'center',
+        fontSize: '2.5vh'
+
     }
-    // configuracion para el menu de opciones desplegables...
-    const categorias = ['Tecnologia','Ciencia','Inteligencia Artificial','Electronicos']; 
+
     // ------ M E T O D O S ----------
-    const handleCategoryClick = (category) => {
-        // Aquí puedes manejar la navegación a las noticias relacionadas con la categoría seleccionada
-        console.log(`Navegar a noticias de la categoría: ${category}`);
-    };
 
   return (
     <header style={Header}>
@@ -108,16 +127,24 @@ const Header = (props) => {
         </div>
         <div>
         <FontAwesomeIcon icon={faPlus}></FontAwesomeIcon>
-        <span style={buttonText}>Agregar post </span>
+        <h3 onClick={openModal} style={buttonText}>Agregar post </h3>
+        {/* Renderiza el modal si isModalOpen es true */}
+        {isModalOpen && <AddPostModal closeModal={closeModal} />}
         </div>
       </div>
       <hr style={separatorStyle} />
 
       <nav style={Menu}>
                     <ul style={ListadoMenu}>
-                        {categorias.map((category, index) => (
-                            <li key={index} onClick={() => handleCategoryClick(category)} style={{ cursor: 'pointer', margin: '0 5vh' }}> 
-                                {category}
+                        {props.categorias.map((category, index) => (
+                            <li key={index} onClick={() => handleCategoryClick(category)}  style={{ cursor: 'pointer', margin: '0 5vh' }}> 
+                                 <Link
+                                    to={`/${category}`}
+                                    style={{ color: props.vistaActual === category ? 'red' : 'white' }}
+                                    onClick={() => handleCategoryClick(category)}
+                                     >
+                                   {category}
+                                 </Link>
                             </li>
                         ))}
                     </ul>
@@ -129,7 +156,11 @@ const Header = (props) => {
 
 // Definición de PropTypes
 Header.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  categorias: PropTypes.array.isRequired,
+   onCategoryChange: PropTypes.func.isRequired,
+    openModal: PropTypes.func.isRequired,
+    vistaActual: PropTypes.string.isRequired
 };
 
 export default Header;
