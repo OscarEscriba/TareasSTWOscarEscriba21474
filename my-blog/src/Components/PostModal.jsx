@@ -34,7 +34,7 @@ const AddPostModal = ({ closeModal }) => {
             console.error('Error al enviar el formulario:', error);
         }
     };
-    const categoryOptions =['Tecnologia','Ciencia','Inteligencia Artificial', 'Electronicos'];
+    const categoryOptions =['Tecnologia','Ciencia','IA', 'Electronicos'];
     return (
         <div className="modal">
             <div className="modal-content">

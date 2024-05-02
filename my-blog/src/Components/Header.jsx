@@ -171,7 +171,7 @@ const Header = (props) => {
 Header.propTypes = {
   name: PropTypes.string.isRequired,
   categorias: PropTypes.array.isRequired,
-   onCategoryChange: PropTypes.func.isRequired,
+   // onCategoryChange: PropTypes.func.isRequired,
     vistaActual: PropTypes.string.isRequired
 };
 
