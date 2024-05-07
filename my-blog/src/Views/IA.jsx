@@ -3,6 +3,7 @@ import Header from "../Components/Header";
 import Card from "../Components/Card";
 import { useLocation } from "react-router-dom";
 import tuImagen from './ImagenIA.jpg';
+import useApi  from "./useApi.ts";
 import './Styles.css';
 
 const IA = () => {
@@ -10,29 +11,23 @@ const IA = () => {
     const rutaActual = location.pathname;
     const nombreRuta = rutaActual.split('/').pop();
     const [iaPosts, setIaPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [Loading, setLoading] = useState(true);
     const [expandedIndex, setExpandedIndex] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [categoriaActual, setCategoriaActual] = useState('');
 
 
 
+    const { getData, filterDataByCategory, data: news, loading, error } = useApi();
     useEffect(() => {
+        const fetchData = async () => {
+            await getData(); // Llama a la función getData al montar el componente
+            console.log('estas son las noticias', news); // Imprime la información obtenida en la consola
+            setLoading(false); // Establece el estado de carga en falso cuando los datos se han cargado
+        };
+    
         fetchData();
-    }, []);
-
-    const fetchData = async () => {
-        try {
-            const response = await fetch(`http://localhost:4000/posts`);
-            const data = await response.json();
-            const iaPosts = data.filter(post => post.category === 'IA');
-            setIaPosts(iaPosts);
-            setLoading(false);
-        } catch (error) {
-            console.error('Error fetching posts:', error);
-            setLoading(false);
-        }
-    };
+    }, [getData]); // Solo ejecutar useEffect cuando getData cambia
 
     const handleCardClick = (index) => {
         if (expandedIndex === index) {
@@ -109,30 +104,35 @@ const IA = () => {
             />
             <div style={content}>
                 <div style={cardsContainerStyle}>
-                    {loading ? (
-                        <div>Cargando...</div>
-                    ) : iaPosts.length === 0 ? (
-                        <div style={messageStyle}>No hay noticias de IA disponibles.</div>
-                    ) : (
-                        iaPosts.map((post, index) => (
+                {Loading ? ( 
+                    // si el loading es true, muestra un indicador de carga. 
+                    <div> Cargando... </div> 
+                ): news.length ===0 ? (
+                    // si mo hay noticias, muetra un mensaje de estado vacio. 
+                    <div> No hay datos cargados </div>
+                ) : (
+                    // Si hay noticias, renderiza las tarjetas de noticias
+                    <div>
+                         {news.filter(item => item.Categoria === 'Electronicos').map((item, index) => (
                             <div key={index} className="card" style={cardStyle} onMouseEnter={handleCardHover} onMouseLeave={handleCardLeave}>
-                                <Card
-                                    nombre={post.title}
-                                    descripcion={post.content.substr(0, 100) + '...'}
-                                    imgStyle={{ width: '100%', height: 'auto' }}
-                                    containerStyle={{ padding: '20px', textAlign: 'left' }}
-                                    titleStyle={{ marginTop: '0' }}
-                                    descriptionStyle={{ marginBottom: '0' }}
-                                    onClick={() => handleCardClick(index)}
-                                />
-                                {expandedIndex === index && (
-                                    <div style={{ padding: '20px', backgroundColor: '#f0f0f0' }}>
-                                        <p>{post.content}</p>
-                                    </div>
-                                )}
+                            <Card
+                                key={index}
+                                nombre={item.Titulo}
+                                descripcion={item.Contendio ? item.Contendio.substr(0, 100) + '...' : ''}
+                                containerStyle={{ padding: '20px', textAlign: 'left' }}
+                                titleStyle={{ marginTop: '0' }}
+                                descriptionStyle={{ marginBottom: '0' }}
+                                onClick={() => handleCardClick(index)}
+                            />
+                            {expandedIndex === index && (
+                            <div style={{ padding: '20px', backgroundColor: '#f0f0f0' }}>
+                                <p>{item.content}</p>
                             </div>
-                        ))
-                    )}
+                            )}
+                            </div>
+                        ))}
+                    </div>
+                )}
                 </div>
             </div>
         </div>

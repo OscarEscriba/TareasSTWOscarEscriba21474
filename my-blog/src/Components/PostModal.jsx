@@ -4,36 +4,48 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnchor } from '@fortawesome/free-solid-svg-icons'; // Importa el ícono faPencil
 import Input from './inputs';
 import Button from './Button';
+import useApi  from "../Views/useApi.ts";
+
 import './ModalStyle.css';
 
 const AddPostModal = ({ closeModal }) => {
-    const [title, setTitle] = useState('');
-    const [content, setContent] = useState('');
-    const [author, setAuthor] = useState('');
-    const [category] = useState('');
-    const [resumen, setResumen] = useState('');
-    const [imagen, setImagen] = useState('');
+    const [Titulo, setTitle] = useState('');
+    const [Contenido, setContent] = useState('');
+    const [Autor, setAuthor] = useState('');
+    const [Categoria] = useState('');
+    const [Resumen, setResumen] = useState('');
+    const [URLimagen, setImagen] = useState('');
 
     const [selectedCategory, setSelectedCategory] = useState('');
     const handleCategoryChange = (e) => {
         setSelectedCategory(e.target.value);
     };
 
+    const { createData } = useApi();
+
     const handleSubmit = async () => {
         try {
-            await axios.post('http://localhost:4000/posts', {
-                title,
-                content,
-                author,
-                category,
-                resumen,
-                imagen
+            // Verificar si los campos obligatorios están vacíos
+            if (!Titulo || !Contenido || !Autor || !selectedCategory || !Resumen || !URLimagen) {
+                console.error('Todos los campos son obligatorios');
+                return;
+            }
+            
+            // Enviar solicitud solo si los campos obligatorios no están vacíos
+            await createData({
+                Titulo,
+                Contenido,
+                Autor,
+                Categoria: selectedCategory,
+                Resumen,
+                URLimagen
             });
             closeModal(); // Cierra el modal después de enviar el formulario
         } catch (error) {
             console.error('Error al enviar el formulario:', error);
         }
     };
+
     const categoryOptions =['Tecnologia','Ciencia','IA', 'Electronicos'];
     return (
         <div className="modal">
@@ -44,14 +56,14 @@ const AddPostModal = ({ closeModal }) => {
                     <h2 className="Titulo">Agregar nuevo post</h2>
                 </div>
                 <label htmlFor="title">Título:</label>
-                <Input type="text" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} height="40px" required />
+                <Input type="text" id="title" name="title" value={Titulo} onChange={(e) => setTitle(e.target.value)} height="40px" required />
 
                 <label>Autor:</label>
                 <Input  
                     type="text" 
                     id="author" 
                     name="author" 
-                    value={author} 
+                    value={Autor} 
                     onChange={(e) => setAuthor(e.target.value)} 
                     style={{ height: "40px" }}  
                     required 
@@ -70,7 +82,7 @@ const AddPostModal = ({ closeModal }) => {
                     id="resumen" 
                     type="text" 
                     name="resumen" 
-                    value={resumen} 
+                    value={Resumen} 
                     onChange={(e) => setResumen(e.target.value)} 
                     height="50px" 
                     required 
@@ -81,7 +93,7 @@ const AddPostModal = ({ closeModal }) => {
                     id="imagen" 
                     type="text" 
                     name="imagen" 
-                    value={imagen} 
+                    value={URLimagen} 
                     onChange={(e) => setImagen(e.target.value)} 
                     height="40px" 
                     required 
@@ -92,7 +104,7 @@ const AddPostModal = ({ closeModal }) => {
                     id="content" 
                     type="text" 
                     name="content" 
-                    value={content} 
+                    value={Contenido} 
                     onChange={(e) => setContent(e.target.value)} 
                     height="90px" 
                     required 

@@ -160,7 +160,7 @@ const handleCardLeave = (event) => {
                 ) : (
                     // Si hay noticias, renderiza las tarjetas de noticias
                     <div>
-                        {news.map((item, index) => (
+                         {news.map((item, index) => (
                             <div key={index} className="card" style={cardStyle} onMouseEnter={handleCardHover} onMouseLeave={handleCardLeave}>
                             <Card
                                 key={index}

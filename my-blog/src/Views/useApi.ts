@@ -44,6 +44,10 @@ const useApi = () => {
     await fetchData('https://us-central1-blogstw2024.cloudfunctions.net/getData', 'GET');
   };
 
+  const filterDataByCategory = (category: string) => {
+    return data.filter((item: any) => item.category === category);
+  };
+
   const updateData = async (id: string, newData: any) => {
     await fetchData(`https://us-central1-blogstw2024.cloudfunctions.net/updateData/${id}`, 'PUT', newData);
   };
@@ -52,7 +56,7 @@ const useApi = () => {
     await fetchData(`https://us-central1-blogstw2024.cloudfunctions.net/deleteData/${id}`, 'DELETE');
   };
 
-  return { data, loading, error, createData, getData, updateData, deleteData };
+  return { data, loading, error, createData, getData, filterDataByCategory, updateData, deleteData };
 };
 
 export default useApi;
