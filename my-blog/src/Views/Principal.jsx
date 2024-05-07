@@ -5,6 +5,7 @@ import Card from "../Components/Card";
 import tuImagen from './imagenFondo.jpg'; 
 import { useLocation } from "react-router-dom";
 import SidebarMenu from "../Components/SideBarMenu";
+import useApi  from "./useApi.ts";
 //import axios from "axios";
 
 /* datos de la base de datos
@@ -13,8 +14,7 @@ import SidebarMenu from "../Components/SideBarMenu";
 */
 
 const Principal = () =>  {
-    const [news, setNews] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [Loading, setLoading] = useState(true);
     // funcion para manejar el estado de expansion de la tarjeta
     const [expandedIndex, setExpandedIndex] = useState(null); 
     // funcion para lo de las categorias
@@ -24,7 +24,6 @@ const Principal = () =>  {
     const nombreRuta = rutaActual.split('/').pop(); // Obtén el último segmento de la ruta
 
 const [isModalOpen, setIsModalOpen] = useState(false);
-
         // Dentro del componente Principal
 const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -36,30 +35,17 @@ const closeSidebar = () => {
     setIsSidebarOpen(false);
 };
 
-    useEffect(() => {
-        fetchData(); // Llama a la función fetchData al montar el componente
-      }, []);
+const { getData, data: news, loading, error } = useApi();
+useEffect(() => {
+    const fetchData = async () => {
+        await getData(); // Llama a la función getData al montar el componente
+        console.log('estas son las noticias', news); // Imprime la información obtenida en la consola
+        setLoading(false); // Establece el estado de carga en falso cuando los datos se han cargado
+    };
 
-      const fetchData = async () => {
-        try {
-          const response = await fetch('http://localhost:4000/posts');
-          const data = await response.json();
-    
-          if (data.length === 0) {
-            // Si no hay datos, establece el estado de loading en falso
-            setLoading(false);
-          } else {
-            // Si hay datos, establece el estado de las noticias y el estado de loading en falso
-            setNews(data);
-            setLoading(false);
-          }
-        } catch (error) {
-          console.error('Error fetching data:', error);
-          // En caso de error, establece el estado de loading en falso
-          setLoading(false);
-          // Podrías manejar el error de otra manera, como mostrando un mensaje de error al usuario
-        }
-      };
+    fetchData();
+}, [getData]); // Solo ejecutar useEffect cuando getData cambia
+
       // para hacer lo de la categoria
       const handleCategoryChange = (categoria) => {
         setCategoriaActual(categoria);
@@ -165,7 +151,7 @@ const handleCardLeave = (event) => {
             
             </div>
             <div style={cardsContainter}>
-                {loading ? ( 
+                {Loading ? ( 
                     // si el loading es true, muestra un indicador de carga. 
                     <div> Cargando... </div> 
                 ): news.length ===0 ? (
@@ -178,10 +164,8 @@ const handleCardLeave = (event) => {
                             <div key={index} className="card" style={cardStyle} onMouseEnter={handleCardHover} onMouseLeave={handleCardLeave}>
                             <Card
                                 key={index}
-                                nombre={item.title}
-                                descripcion={item.content.substr(0, 100) + '...'}
-                                imagenUrl={item.imagenUrl}
-                                imgStyle={{ width: '100%', height: 'auto' }}
+                                nombre={item.Titulo}
+                                descripcion={item.Contendio ? item.Contendio.substr(0, 100) + '...' : ''}
                                 containerStyle={{ padding: '20px', textAlign: 'left' }}
                                 titleStyle={{ marginTop: '0' }}
                                 descriptionStyle={{ marginBottom: '0' }}

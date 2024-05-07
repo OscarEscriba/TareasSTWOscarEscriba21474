@@ -3,6 +3,7 @@ import Header from "../Components/Header";
 import Card from "../Components/Card";
 import { useLocation } from "react-router-dom";
 import tuImagen from './ImagenElectronicos.jpg';
+import useApi  from "./useApi.ts";
 import './Styles.css';
 
 const Electronicos = () => {
@@ -10,26 +11,15 @@ const Electronicos = () => {
     const rutaActual = location.pathname;
     const nombreRuta = rutaActual.split('/').pop();
     const [electronicosPosts, setElectronicosPosts] = useState([]);
-    const [loading, setLoading] = useState(true);
+   // const [loading, setLoading] = useState(true);
     const [expandedIndex, setExpandedIndex] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    useEffect(() => {
-        fetchData();
-    }, []);
+    const { getData, data: news, loading, error } = useApi();
 
-    const fetchData = async () => {
-        try {
-            const response = await fetch(`http://localhost:4000/posts`);
-            const data = await response.json();
-            const electronicosPosts = data.filter(post => post.category === 'Electronicos');
-            setElectronicosPosts(electronicosPosts);
-            setLoading(false);
-        } catch (error) {
-            console.error('Error fetching posts:', error);
-            setLoading(false);
-        }
-    };
+        useEffect(() => {
+            getData(); // Llama a la función getData al montar el componente
+        }, []);
 
     const handleCardClick = (index) => {
         if (expandedIndex === index) {
