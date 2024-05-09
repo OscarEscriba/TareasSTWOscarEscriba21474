@@ -4,6 +4,7 @@ import Card from "../Components/Card";
 import { useLocation } from "react-router-dom";
 import tuImagen from './ImagenIA.jpg';
 import useApi  from "./useApi.ts";
+import './Loader.css'; 
 import './Styles.css';
 
 const IA = () => {
@@ -106,7 +107,7 @@ const IA = () => {
                 <div style={cardsContainerStyle}>
                 {Loading ? ( 
                     // si el loading es true, muestra un indicador de carga. 
-                    <div> Cargando... </div> 
+                    <div className="Loader"> </div> 
                 ): news.length ===0 ? (
                     // si mo hay noticias, muetra un mensaje de estado vacio. 
                     <div> No hay datos cargados </div>
