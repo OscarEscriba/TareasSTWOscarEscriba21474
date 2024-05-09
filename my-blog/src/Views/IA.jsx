@@ -107,7 +107,7 @@ const IA = () => {
                 <div style={cardsContainerStyle}>
                 {Loading ? ( 
                     // si el loading es true, muestra un indicador de carga. 
-                    <div className="Loader"> </div> 
+                    <div className="loader"> </div> 
                 ): news.length ===0 ? (
                     // si mo hay noticias, muetra un mensaje de estado vacio. 
                     <div> No hay datos cargados </div>
