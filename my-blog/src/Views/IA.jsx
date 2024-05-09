@@ -113,7 +113,7 @@ const IA = () => {
                 ) : (
                     // Si hay noticias, renderiza las tarjetas de noticias
                     <div>
-                         {news.filter(item => item.Categoria === 'Electronicos').map((item, index) => (
+                         {news.filter(item => item.Categoria === 'IA').map((item, index) => (
                             <div key={index} className="card" style={cardStyle} onMouseEnter={handleCardHover} onMouseLeave={handleCardLeave}>
                             <Card
                                 key={index}

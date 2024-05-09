@@ -103,7 +103,7 @@ const Electronicos = () => {
                     <div> Cargando... </div> 
                 ): news.length ===0 ? (
                     // si mo hay noticias, muetra un mensaje de estado vacio. 
-                    <div> No hay datos cargados </div>
+                    <div><h1> No hay datos cargados </h1> </div>
                 ) : (
                     // Si hay noticias, renderiza las tarjetas de noticias
                     <div>

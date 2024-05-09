@@ -32,18 +32,19 @@ export const createData = functions.https.onRequest(async (req, res) => {
   }
 });
 
+
 // Leer registros
-export const getData = functions.https.onRequest(async (req, res) => {
-  corsHandler(req, res, () => {});
-  try {
-    const snapshot = await admin.firestore().collection('Blog').get();
-    const data = snapshot.docs.map(doc => doc.data());
-    res.status(200).json(data);
-  } catch (error) {
-    console.error('Error al obtener los datos:', error);
-    res.status(500).send('Error interno del servidor');
-  }
-});
+export const getData = functions.https.onRequest(async (req: functions.https.Request, res: functions.Response<any>) => {
+    corsHandler(req, res, () => {});
+    try {
+      const snapshot = await admin.firestore().collection('Blog').get();
+      const data = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      res.status(200).json(data);
+    } catch (error) {
+      console.error('Error al obtener los datos:', error);
+      res.status(500).send('Error interno del servidor');
+    }
+  });
 
 // Actualizar un registro
 export const updateData = functions.https.onRequest(async (req, res) => {
@@ -61,14 +62,16 @@ export const updateData = functions.https.onRequest(async (req, res) => {
 
 // Eliminar un registro
 export const deleteData = functions.https.onRequest(async (req, res) => {
-  corsHandler(req, res, () => {});
-  try {
-    const { id } = req.params;
-    await admin.firestore().collection('Blog').doc(id).delete();
-    res.status(200).send('Registro eliminado exitosamente');
-  } catch (error) {
-    console.error('Error al eliminar el registro:', error);
-    res.status(500).send('Error interno del servidor');
-  }
-});
-
+    corsHandler(req, res, () => {});
+    try {
+      const id = req.query.id as string; // Obtén el ID del query string
+      if (!id) {
+        throw new Error('ID no proporcionado');
+      }
+      await admin.firestore().collection('Blog').doc(id).delete();
+      res.status(200).send('Registro eliminado exitosamente');
+    } catch (error) {
+      console.error('Error al eliminar el registro:', error);
+      res.status(500).send('Error interno del servidor');
+    }
+  });

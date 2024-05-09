@@ -11,10 +11,10 @@ const SidebarMenu = ({ isOpen, onClose }) => {
       {/* Contenido del menú */}
       <div className="menu-content">
         <ul>
-          <li>Item 1</li>
-          <li>Item 2</li>
-          <li>Item 3</li>
-          <li>Item 4</li>
+          <li>La tecnologia avanza</li>
+          <li>A pasos agigantados </li>
+          <li>estas listo para</li>
+          <li>seguir el ritmo?</li>
         </ul>
         {/* Botón para cerrar el menú */}
         <button onClick={handleClose}>Cerrar</button>

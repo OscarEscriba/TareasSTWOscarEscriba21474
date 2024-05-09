@@ -53,7 +53,7 @@ const useApi = () => {
   };
 
   const deleteData = async (id: string) => {
-    await fetchData(`https://us-central1-blogstw2024.cloudfunctions.net/deleteData/${id}`, 'DELETE');
+    await fetchData(`https://us-central1-blogstw2024.cloudfunctions.net/deleteData?id=${id}`, 'DELETE');
   };
 
   return { data, loading, error, createData, getData, filterDataByCategory, updateData, deleteData };

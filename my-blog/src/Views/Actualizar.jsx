@@ -1,13 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useApi from './useApi.ts'; // Importa tu hook useApi
-import useForm from './useForm'; // Importa el hook useForm
 import Input from '../Components/inputs';
 import Button from '../Components/Button';
 
 const UpdateDataView = () => {
   const { updateData } = useApi(); // Obtiene la función de actualización de tu hook
 
-  const initialState = {
+  const [formData, setFormData] = useState({
     id: '',
     newTitle: '',
     newContent: '',
@@ -15,9 +14,15 @@ const UpdateDataView = () => {
     newAuthor: '',
     newSummary: '',
     newImageUrl: '',
-  };
+  });
 
-  const { formData, handleChange, resetForm } = useForm(initialState);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +36,15 @@ const UpdateDataView = () => {
         URLimagen: formData.newImageUrl,
       });
       // Aquí puedes agregar lógica adicional, como mostrar un mensaje de éxito o redirigir a otra página
-      resetForm(); // Resetea el formulario después de la actualización exitosa
+      setFormData({
+        id: '',
+        newTitle: '',
+        newContent: '',
+        newCategory: '',
+        newAuthor: '',
+        newSummary: '',
+        newImageUrl: '',
+      }); // Resetea el formulario después de la actualización exitosa
     } catch (error) {
       console.error('Error al actualizar los datos:', error);
       // Aquí puedes manejar el error de alguna manera, como mostrar un mensaje de error al usuario
@@ -106,3 +119,4 @@ const UpdateDataView = () => {
 };
 
 export default UpdateDataView;
+

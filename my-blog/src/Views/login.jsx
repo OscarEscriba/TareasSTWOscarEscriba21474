@@ -1,28 +1,22 @@
+// src/views/Login.js
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Importa Link
 import Input from '../Components/inputs';
 import Button from '../Components/Button';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [loginError, setLoginError] = useState(false);
 
   const handleLogin = () => {
-    // Verifica las credenciales del usuario
     if (username === 'user' && password === 'user') {
-      // Si las credenciales son correctas, redirecciona a la página principal del usuario
+      localStorage.setItem('user', JSON.stringify({ username: 'user' }));
       window.location.href = '/Principal';
     } else if (username === 'admin' && password === 'admin') {
-      // Si las credenciales son para administrador, redirecciona a la vista de inicio de sesión del admin
+      localStorage.setItem('admin', JSON.stringify({ username: 'admin' }));
       window.location.href = '/AdminMenu';
-    } else {
-      // Si las credenciales son incorrectas, muestra un mensaje de error
-      setLoginError(true);
     }
   };
 
-  // Estilos
   const login = {
     display: 'flex',
     justifyContent: 'center',
@@ -33,6 +27,7 @@ const Login = () => {
     border: 0,
     padding: 0
   };
+
   const cardLogin = {
     alignSelf: 'center',
     width: '300px',
@@ -42,7 +37,8 @@ const Login = () => {
     borderRadius: '8px',
     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)'
   };
-  const buttonStyle = {
+
+  const ButtonStyle = {
     display: 'flex',
     justifyContent: 'center',
     marginTop: '20px'
@@ -71,19 +67,13 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div style={buttonStyle}>
+          <div style={ButtonStyle}>
             <Button type="button" onClick={handleLogin} color='green'>
               Iniciar sesión
             </Button>
-            <Link to="/login-admin">
-              <Button type="button" color='blue'>
-                Ingresar como Administrador
-              </Button>
-            </Link>
           </div>
         </form>
       </div>
-      {loginError && <p style={{ color: 'red' }}>Credenciales incorrectas. Por favor, intenta de nuevo.</p>}
     </div>
   );
 };
