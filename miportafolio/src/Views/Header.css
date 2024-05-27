@@ -1,10 +1,14 @@
 header {
   display: flex;
-  /* justify-content: space-between; */ 
   align-items: center;
   padding: 1rem 2rem;
   background: linear-gradient(45deg, #000000, #800080); /* Degradado de negro a morado */
   color: white;
+  width: 100%; /* Asegura que el header ocupe todo el ancho de la pantalla */
+  position: fixed; /* Fija el header en la parte superior */
+  top: 0; /* Posiciona el header en la parte superior */
+  left: 0; /* Alinea el header al borde izquierdo */
+  z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
 }
 
 header h1 {
@@ -19,20 +23,63 @@ header h1 {
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: center; /* Centra los elementos del nav horizontalmente */
   align-items: center; /* Centra los elementos del nav verticalmente */
   gap: 2rem; /* Aumentar el espacio entre elementos */
   padding: 0; /* Eliminar padding predeterminado */
   margin: 0; /* Eliminar margin predeterminado */
-  margin-left: 45vh;
+  margin-left: 45vh; /* centrar los elementos de seleccion */ 
 }
 
 nav a {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  padding-bottom: 0.5rem; /* Espacio para el borde inferior */
+  position: relative; /* Para el efecto de la barra subrayada */
 }
 
-nav a:hover {
-  text-decoration: underline;
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px; /* Altura de la barra subrayada */
+  background-color: #00FFFF; /* Color de la barra subrayada */
+  transition: width 0.3s ease-in-out; /* Transición para la animación */
 }
+
+nav a:hover::after,
+.is-current a::after {
+  width: 100%; /* Ancho completo para la barra subrayada */
+}
+
+nav a:hover::after {
+  animation: growRight 0.3s ease-in-out; /* Animación para mostrar la barra subrayada */
+}
+
+.is-current a::after {
+  animation: shrinkRight 0.3s ease-in-out; /* Animación para ocultar la barra subrayada */
+}
+
+@keyframes growRight {
+  from {
+    width: 100%; /* Ancho inicial */
+  }
+  to {
+    width: 0%; /* Ancho final */
+  }
+}
+
+@keyframes shrinkRight {
+  from {
+    width: 0%; /* Ancho inicial */
+  }
+  to {
+    width:100%; /* Ancho final */
+  }
+}
+body {
+  margin-top: 80px; /* Ajusta el margen superior del cuerpo para evitar que el contenido se oculte detrás del header */
+}
+
