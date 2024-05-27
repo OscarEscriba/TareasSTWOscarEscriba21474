@@ -1,0 +1,38 @@
+header {
+  display: flex;
+  /* justify-content: space-between; */ 
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(45deg, #000000, #800080); /* Degradado de negro a morado */
+  color: white;
+}
+
+header h1 {
+  background: linear-gradient(80deg, #00FFFF, #00FF00, #00BFFF, #008080, #7B68EE, #800080);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  font-size: 2rem;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center; /* Centra los elementos del nav horizontalmente */
+  align-items: center; /* Centra los elementos del nav verticalmente */
+  gap: 2rem; /* Aumentar el espacio entre elementos */
+  padding: 0; /* Eliminar padding predeterminado */
+  margin: 0; /* Eliminar margin predeterminado */
+  margin-left: 45vh;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
