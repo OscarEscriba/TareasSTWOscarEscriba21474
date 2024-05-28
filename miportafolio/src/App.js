@@ -5,7 +5,7 @@ import About from './Views/About';
 import Projects from './Views/Projects';
 import Contact from './Views/Contact';
 import Home from './Views/home'
-
+import Technologies from './Views/Tecnologies'
 function App() {
   return (
     <div className="App">
@@ -13,6 +13,7 @@ function App() {
       <Home />
       <Header />
       <About />
+      <Technologies />
       <Projects />
       <Contact />
     </div>

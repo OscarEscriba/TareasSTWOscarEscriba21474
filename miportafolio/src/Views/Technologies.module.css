@@ -1,0 +1,58 @@
+/* Technologies.module.css */
+.technologiesContainer {
+    margin-top: 20px;
+    padding: 20px;
+  }
+  
+  .gridContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  .techItem {
+    border: 1px solid #ccc;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .techDetails {
+    text-align: center;
+  }
+  
+  /* ProgressBar.module.css */
+  .progressBarContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .progressBar {
+    width: 300px;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    height: 100%;
+    background-color: #a87bc7; /* Cambiar el color de la barra de progreso a morado */
+    width: 0%; /* Inicializar el ancho en 0% */
+    transition: width 1s ease; /* Agregar una transición para animar el cambio de ancho */
+  }
+  
+  .label {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 10px;
+    font-size: 14px;
+    width: 50px;
+  }
+  /* Define el tamaño deseado para las imágenes */
+.imgIcon {
+    width: 80px; /* Ajusta el ancho según tus preferencias */
+    height: auto; /* Mantén la proporción de aspecto */
+  }
