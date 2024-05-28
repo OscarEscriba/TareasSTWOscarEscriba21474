@@ -1,14 +1,14 @@
-#about {
+.about {
   padding: 2rem;
   background-color: #f4f4f4;
   transition: background-color 0.5s ease; /* Animación de transición de color de fondo */
 }
 
-#about:hover {
+.about:hover {
   background-color: #a87bc7; /* Color de fondo al pasar el mouse sobre el área */
 }
 
-#about:hover .TituloPrincipal h2 {
+.about:hover .TituloPrincipal h2 {
   color: white; /* Cambiar el color del texto del título principal a blanco */
 }
 
@@ -20,26 +20,29 @@
   font-family: "Anton", sans-serif; /* Estilo de letra diferente */
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombreado */
 }
+
 .divider {
   width: 100%;
   border-top: 1px solid #ccc; /* Color y grosor de la línea divisoria */
   margin-bottom: 2rem; /* Espacio entre la línea y el contenido */
 }
+
 .letra {
   font-family: "Jaro", sans-serif;
   font-size: 2rem; /* Tamaño del texto más grande */
 }
-.about-content {
+
+.aboutContent {
   display: flex;
   align-items: center;
 }
 
-.image-container {
+.imageContainer {
   margin-right: 2rem; /* Espacio entre la imagen y el texto */
   margin-left: 20vh;
 }
 
-.photo-frame {
+.photoFrame {
   position: relative;
   background-color: black;
   border-radius: 50%; /* Convertir el marco en un círculo */
@@ -53,7 +56,7 @@
   border: 2px solid transparent; /* Borde inicial transparente */
 }
 
-.photo-frame::before {
+.photoFrame::before {
   content: '';
   position: absolute;
   top: 0;
@@ -89,20 +92,19 @@
   }
 }
 
-.photo-frame img {
+.photoFrame img {
   width: 100%; /* Ajustar el tamaño de la imagen para que ocupe todo el contenedor */
   height: 100%; /* Ajustar la altura de la imagen para que ocupe todo el contenedor */
- /* Asegurarse de que la imagen se ajuste bien al contenedor */
   border-radius: 50%; /* Bordes redondeados para la imagen */
 }
 
-.social-buttons {
+.socialButtons {
   margin-top: 1rem; /* Espacio entre la foto y los botones */
   display: flex;
   justify-content: center;
 }
 
-.social-buttons a {
+.socialButtons a {
   display: inline-block;
   margin-right: 10px;
   padding: 5px 10px;
@@ -112,16 +114,17 @@
   transition: background-color 0.3s ease;
 }
 
-.social-icon {
+.socialIcon {
   width: 30px; /* ajusta el tamaño según tus preferencias */
   height: auto; /* para mantener la proporción */
   transition: transform 0.3s ease; /* animación de transición */
 }
-.social-icon:hover {
+
+.socialIcon:hover {
   transform: scale(1.2); /* escala el icono al pasar el mouse sobre él */
 }
 
-.text-container h4 {
+.textContainer h4 {
   overflow: hidden; /* Ocultar el texto que se desborde */
   white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
 }

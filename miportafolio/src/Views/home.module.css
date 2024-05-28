@@ -1,0 +1,80 @@
+.home {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Altura completa de la ventana */
+  background-size: cover; /* Ajustar el tamaño de la imagen */
+  background-position: center; /* Centrar la imagen */
+  background-repeat: no-repeat; /* No repetir la imagen */
+  overflow: hidden; /* Para ocultar el contenido inicial */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); /* Inicialmente transparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  transition: background-color 0.5s ease, opacity 0.5s ease; /* Transiciones para suavidad */
+}
+
+.home:hover .overlay {
+  background-color: rgba(0, 0, 0, 1); /* Fondo negro total */
+  opacity: 1; /* Mostrar contenido */
+}
+
+.textContainer {
+  text-align: center;
+  color: white; /* Texto blanco */
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.7); /* Sombra de texto negra */
+  font-family: Arial, sans-serif; /* Fuente legible */
+}
+
+.textContainer h1,
+.textContainer h2 {
+  position: relative;
+  transform: translateY(-100px); /* Empieza arriba */
+  transition: transform 0.5s ease; /* Transición suave */
+  color: white; /* Texto blanco */
+}
+
+.textContainer h1 {
+  margin: 0;
+  font-size: 4.5rem; /* Tamaño del texto principal aumentado */
+  line-height: 1.2; /* Espaciado entre líneas */
+  color: white; /* Texto blanco */
+}
+
+.textContainer h2 {
+  margin: 1rem 0 2rem;
+  font-size: 3rem; /* Tamaño del texto secundario aumentado */
+  color: white; /* Texto blanco */
+
+}
+
+.cvButton {
+  display: inline-block;
+  padding: 20px 40px; /* Tamaño más grande */
+  background-color: #a87bc7; /* Tonalidad morada */
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 1.5rem; /* Tamaño de texto más grande */
+  border: 2px solid #7d00ff; /* Borde morado */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cvButton:hover {
+  background-color: #8a62b0; /* Tonalidad morada más oscura */
+  transform: scale(1.1); /* Escalar el botón al pasar el mouse */
+}
+
+.home:hover .textContainer h1,
+.home:hover .textContainer h2 {
+  transform: translateY(0); /* Muestra el texto */
+}

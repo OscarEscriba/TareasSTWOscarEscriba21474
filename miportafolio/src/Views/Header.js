@@ -32,14 +32,11 @@ const Header = () => {
       <nav>
         <Scrollspy items={['home', 'about', 'projects', 'tecnologias', 'Contact']} currentClassName="is-current" activeClass="active" offset={-50}>
           <li>
-            <a id="home-link" href="#home" onClick={handleHomeClick}>Home</a>
-            <CSSTransition in={showBar} timeout={300} classNames="nav-slide" unmountOnExit>
-              <div className="nav-bar"></div>
-            </CSSTransition>
+            <a href="#home">Home</a>
           </li>
           <li><a href="#about">Sobre mí</a></li>
-          <li><a href="#projects">Proyectos</a></li>
           <li><a href="#tecnologias">Tecnologías</a></li>
+          <li><a href="#projects">Proyectos</a></li>
           <li><a href="#Contact">Contacto</a></li>
         </Scrollspy>
       </nav>
