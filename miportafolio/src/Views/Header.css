@@ -9,6 +9,7 @@ header {
   top: 0; /* Posiciona el header en la parte superior */
   left: 0; /* Alinea el header al borde izquierdo */
   z-index: 1000; /* Asegura que el header esté por encima de otros elementos */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Genera una sombra */
 }
 
 header h1 {
@@ -34,52 +35,44 @@ nav a {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  padding-bottom: 0.5rem; /* Espacio para el borde inferior */
-  position: relative; /* Para el efecto de la barra subrayada */
+  position: relative; /* Establece la posición relativa para los enlaces */
 }
 
 nav a::after {
   content: '';
   position: absolute;
-  bottom: 0;
   left: 0;
+  bottom: -2px; /* Posiciona la barra debajo del texto */
   width: 0;
-  height: 2px; /* Altura de la barra subrayada */
-  background-color: #00FFFF; /* Color de la barra subrayada */
-  transition: width 0.3s ease-in-out; /* Transición para la animación */
+  height: 2px; /* Grosor de la barra */
+  background-color: #00FFFF; /* Color de la barra */
+  transition: width 0.3s ease-in-out; /* Añade transición a la anchura */
 }
 
 nav a:hover::after,
 .is-current a::after {
-  width: 100%; /* Ancho completo para la barra subrayada */
+  width: 100%; /* Anima la barra para que crezca al 100% cuando se pasa el mouse o está activo */
 }
 
-nav a:hover::after {
-  animation: growRight 0.3s ease-in-out; /* Animación para mostrar la barra subrayada */
+.nav-slide-enter {
+  width: 0;
 }
 
-.is-current a::after {
-  animation: shrinkRight 0.3s ease-in-out; /* Animación para ocultar la barra subrayada */
+.nav-slide-enter-active {
+  width: 100%; /* Animación de izquierda a derecha */
+  transition: width 0.3s ease-in-out; /* Añade transición a la anchura */
 }
 
-@keyframes growRight {
-  from {
-    width: 100%; /* Ancho inicial */
-  }
-  to {
-    width: 0%; /* Ancho final */
-  }
+.nav-slide-exit {
+  width: 100%;
 }
 
-@keyframes shrinkRight {
-  from {
-    width: 0%; /* Ancho inicial */
-  }
-  to {
-    width:100%; /* Ancho final */
-  }
+.nav-slide-exit-active {
+  width: 0; /* Animación de derecha a izquierda */
+  transition: width 0.3s ease-in-out; /* Añade transición a la anchura */
 }
 body {
-  margin-top: 80px; /* Ajusta el margen superior del cuerpo para evitar que el contenido se oculte detrás del header */
+  margin-top: 200px; /* Ajusta el margen superior del cuerpo para evitar que el contenido se oculte detrás del header */
+  margin-bottom: 200px;
 }
 

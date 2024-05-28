@@ -1,5 +1,127 @@
 #about {
-    padding: 2rem;
-    background-color: #f4f4f4;
+  padding: 2rem;
+  background-color: #f4f4f4;
+  transition: background-color 0.5s ease; /* Animación de transición de color de fondo */
+}
+
+#about:hover {
+  background-color: #a87bc7; /* Color de fondo al pasar el mouse sobre el área */
+}
+
+#about:hover .TituloPrincipal h2 {
+  color: white; /* Cambiar el color del texto del título principal a blanco */
+}
+
+.TituloPrincipal h2 {
+  text-align: center;
+  font-size: 3rem; /* Tamaño del texto más grande */
+  color: #a87bc7; /* Color del texto blanco */
+  margin-bottom: 2rem; /* Espacio debajo del título */
+  font-family: "Anton", sans-serif; /* Estilo de letra diferente */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombreado */
+}
+.divider {
+  width: 100%;
+  border-top: 1px solid #ccc; /* Color y grosor de la línea divisoria */
+  margin-bottom: 2rem; /* Espacio entre la línea y el contenido */
+}
+.letra {
+  font-family: "Jaro", sans-serif;
+  font-size: 2rem; /* Tamaño del texto más grande */
+}
+.about-content {
+  display: flex;
+  align-items: center;
+}
+
+.image-container {
+  margin-right: 2rem; /* Espacio entre la imagen y el texto */
+  margin-left: 20vh;
+}
+
+.photo-frame {
+  position: relative;
+  background-color: black;
+  border-radius: 50%; /* Convertir el marco en un círculo */
+  width: 400px; /* Ajustar el ancho del cuadro */
+  height: 500px; /* Ajustar la altura del cuadro */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden; /* Asegurarse de que la imagen no se salga del marco */
+  border: 2px solid transparent; /* Borde inicial transparente */
+}
+
+.photo-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%; /* Borde circular */
+  border: 5px solid transparent; /* Borde inicial transparente */
+  box-sizing: border-box;
+  animation: draw-border 5s linear infinite;
+}
+
+@keyframes draw-border {
+  0% {
+    clip-path: inset(0 50% 50% 0);
+    border-color: #7d00ff;
   }
-  
+  25% {
+    clip-path: inset(0 0 50% 0);
+    border-color: #7d00ff;
+  }
+  50% {
+    clip-path: inset(0 0 0 0);
+    border-color: #7d00ff;
+  }
+  75% {
+    clip-path: inset(0 0 0 50%);
+    border-color: #7d00ff;
+  }
+  100% {
+    clip-path: inset(0 50% 0 50%);
+    border-color: #7d00ff;
+  }
+}
+
+.photo-frame img {
+  width: 100%; /* Ajustar el tamaño de la imagen para que ocupe todo el contenedor */
+  height: 100%; /* Ajustar la altura de la imagen para que ocupe todo el contenedor */
+ /* Asegurarse de que la imagen se ajuste bien al contenedor */
+  border-radius: 50%; /* Bordes redondeados para la imagen */
+}
+
+.social-buttons {
+  margin-top: 1rem; /* Espacio entre la foto y los botones */
+  display: flex;
+  justify-content: center;
+}
+
+.social-buttons a {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 10px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.social-icon {
+  width: 30px; /* ajusta el tamaño según tus preferencias */
+  height: auto; /* para mantener la proporción */
+  transition: transform 0.3s ease; /* animación de transición */
+}
+.social-icon:hover {
+  transform: scale(1.2); /* escala el icono al pasar el mouse sobre él */
+}
+
+.text-container h4 {
+  overflow: hidden; /* Ocultar el texto que se desborde */
+  white-space: nowrap; /* Evitar que el texto se divida en varias líneas */
+}

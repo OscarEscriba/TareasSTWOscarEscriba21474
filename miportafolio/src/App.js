@@ -8,6 +8,7 @@ import Contact from './Views/Contact';
 function App() {
   return (
     <div className="App">
+        <div className="background"></div>
       <Header />
       <About />
       <Projects />
