@@ -4,6 +4,22 @@
     flex-direction: column;
     align-items: center;
     padding: 2rem;
+    background-color: #f0f0f0; /* Color de fondo para mejor visibilidad */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+    position: relative; /* Añadido para el posicionamiento del contenido */
+  }
+  
+  .timelineContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('./graduation_cap.png') no-repeat center center;
+    background-size: contain; /* Ajusta el tamaño de la imagen */
+    opacity: 0.1; /* Ajusta la opacidad según sea necesario */
+    z-index: -1; /* Coloca la imagen detrás del contenido */
   }
   
   h2 {
@@ -14,49 +30,54 @@
     animation: fadeInDown 0.5s ease-out;
   }
   
+  .timelineContainer:hover {
+    transform: scale(1.05);
+    opacity: 1; /* Aumenta la opacidad al pasar el mouse */
+  }
+  
   .timeline {
     position: relative;
     width: 80%;
     max-width: 900px;
+    padding: 2rem 0; /* Añadir un poco de padding vertical */
   }
   
   .timelineEvent {
     display: flex;
-    align-items: center;
     justify-content: center;
     position: relative;
     margin: 2rem 0;
-    animation: fadeIn 1s ease-out;
-  }
-  
-  .timelineEvent:nth-child(odd) .left,
-  .timelineEvent:nth-child(even) .right {
-    visibility: hidden;
-  }
-  
-  .timelineEvent:nth-child(odd) .right,
-  .timelineEvent:nth-child(even) .left {
-    visibility: visible;
   }
   
   .timelineEvent .left,
   .timelineEvent .right {
     width: 45%;
     padding: 1rem;
-    background: #f0f0f0;
+    background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    animation: slideIn 0.5s ease-out;
+    position: relative;
+    opacity: 0.8; /* Valor inicial de opacidad */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  }
+  
+  .timelineContainer:hover .timelineEvent {
+    opacity: 1; /* Opacidad completa al pasar el mouse */
+  }
+  
+  .timelineEvent .left:hover,
+  .timelineEvent .right:hover {
+    transform: scale(1.1);
   }
   
   .timelineEvent .left {
     text-align: right;
-    animation-name: slideInLeft;
+    left: -55%;
   }
   
   .timelineEvent .right {
     text-align: left;
-    animation-name: slideInRight;
+    right: -55%;
   }
   
   .timelineEvent .dot {
@@ -68,7 +89,7 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 1;
-    animation: fadeIn 0.5s ease-out;
+    top: 50%; /* Centra el punto verticalmente */
   }
   
   .timeline::before {
@@ -88,33 +109,6 @@
     color: #333;
   }
   
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes slideInLeft {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes slideInRight {
-    from {
-      transform: translateX(100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  
   @keyframes fadeInDown {
     from {
       opacity: 0;
@@ -125,4 +119,5 @@
       transform: translateY(0);
     }
   }
+  
   

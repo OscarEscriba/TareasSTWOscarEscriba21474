@@ -12,12 +12,11 @@ const events = [
 
 const Historial = () => {
   return (
-    <section id='Historial' >
     <div className={styles.timelineContainer}>
       <h2>Historial</h2>
       <div className={styles.timeline}>
         {events.map((event, index) => (
-          <div key={index} className={styles.timelineEvent}>
+          <div key={index} className={`${styles.timelineEvent} ${styles.animateOnHover}`}>
             <div className={index % 2 === 0 ? styles.left : styles.right}>
               <div className={styles.eventContent}>
                 <h3>{event.title}</h3>
@@ -30,7 +29,6 @@ const Historial = () => {
         ))}
       </div>
     </div>
-    </section>
   );
 };
 

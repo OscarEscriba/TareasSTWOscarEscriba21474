@@ -46,7 +46,7 @@ const ContactForm = () => {
 
   return (
     <section id='Contact' className={styles.Contact} >
-    <div className={styles.contactFormContainer}>
+    <div id='Contact' className={styles.contactFormContainer}>
       <form onSubmit={sendEmail} className={styles.form}>
         <h2>Contacta Conmigo</h2>
         <div className={styles.inputGroup}>
