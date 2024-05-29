@@ -1,28 +1,36 @@
 .progressBarContainer {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px; /* Agrega margen inferior para separación */
-}
-
-.progressBar {
-  width: 300px;
-  height: 20px;
-  background-color: #eee;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.progress {
-  height: 100%;
-  background-color: purple; /* Cambia el color de la barra de progreso */
-  width: 0%; /* Inicializa el ancho en 0% */
-  transition: width 1s ease; /* Agrega una transición para animar el cambio de ancho */
-}
-
-.label {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 10px;
-  font-size: 14px;
-  width: 50px;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px; /* Agrega margen inferior para separación */
+  }
+  
+  .progressBar {
+    width: 300px;
+    height: 20px;
+    background-color: #eee;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    height: 100%;
+    background-color: purple; /* Cambia el color de la barra de progreso */
+    width: 0%; /* Inicializa el ancho en 0% */
+    transition: width 1s ease; /* Agrega una transición para animar el cambio de ancho */
+  }
+  
+  .label {
+    display: flex;
+    flex-direction: column; /* Cambiamos a columna para alinear el texto centrado */
+    align-items: center;
+    margin-top: 10px; /* Añade un margen superior para separar del progreso */
+    font-size: 16px; /* Aumenta el tamaño de la fuente */
+    text-align: center; /* Centra el texto */
+    font-weight: bold; /* Hacer el texto en negrita */
+  }
+  
+  .label span {
+    margin: 2px 0; /* Añade un pequeño margen entre las líneas de texto */
+  }
+  

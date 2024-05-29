@@ -1,58 +1,43 @@
-/* Technologies.module.css */
 .technologiesContainer {
     margin-top: 20px;
     padding: 20px;
   }
   
-  .gridContainer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+  .slider {
+    width: 80%;
+    margin: 0 auto;
   }
   
   .techItem {
-    border: 1px solid #ccc;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: flex; /* Añade display: flex */
+    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
+    justify-content: center; /* Centra verticalmente los elementos */
   }
+  
+
   
   .techDetails {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
   }
   
-  /* ProgressBar.module.css */
+  .imgIcon {
+    width: 200px;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
   .progressBarContainer {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
-  .progressBar {
-    width: 300px;
-    height: 20px;
-    background-color: #eee;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  
-  .progress {
-    height: 100%;
-    background-color: #a87bc7; /* Cambiar el color de la barra de progreso a morado */
-    width: 0%; /* Inicializar el ancho en 0% */
-    transition: width 1s ease; /* Agregar una transición para animar el cambio de ancho */
-  }
-  
-  .label {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 10px;
-    font-size: 14px;
-    width: 50px;
-  }
-  /* Define el tamaño deseado para las imágenes */
-.imgIcon {
-    width: 80px; /* Ajusta el ancho según tus preferencias */
-    height: auto; /* Mantén la proporción de aspecto */
-  }
