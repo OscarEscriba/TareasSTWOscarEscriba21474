@@ -6,6 +6,7 @@ import Projects from './Views/Projects';
 import Contact from './Views/Contact';
 import Home from './Views/home'
 import Technologies from './Views/Tecnologies'
+import Historial from './Views/Historial';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -16,6 +17,7 @@ function App() {
       <Home />
       <Header />
       <About />
+      <Historial />
       <Technologies />
       <Projects />
       <Contact />

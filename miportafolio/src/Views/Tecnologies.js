@@ -39,8 +39,8 @@ const Technologies = () => {
   };
 
   return (
-    <div className={styles.technologiesContainer} onMouseEnter={handleMouseEnter}>
-      <h2>Tecnologías</h2>
+    <div id='tecnologias' className={styles.technologiesContainer} onMouseEnter={handleMouseEnter}>
+<h2 style={{ textAlign: 'center', fontSize: '2.5em', fontFamily: 'cursive' }}>Tecnologias</h2>
       <Slider {...settings} className={styles.slider}>
         {technologies.map((tech, index) => (
           <div key={index} className={`${styles.techItem} ${index === currentSlide ? styles.active : ''}`}>

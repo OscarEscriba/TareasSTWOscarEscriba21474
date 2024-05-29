@@ -30,11 +30,12 @@ const Header = () => {
     <header>
       <h1>Mi Portafolio</h1>
       <nav>
-        <Scrollspy items={['home', 'about', 'projects', 'tecnologias', 'Contact']} currentClassName="is-current" activeClass="active" offset={-50}>
+        <Scrollspy items={['home', 'about','Historial', 'tecnologias', 'projects', 'Contact']} currentClassName="is-current" activeClass="active" offset={-50}>
           <li>
-            <a href="#home">Home</a>
+            <a href="#home"  onClick={handleHomeClick}>Home</a>
           </li>
           <li><a href="#about">Sobre mí</a></li>
+          <li><a href="#Historial">Linea de Tiempo</a></li>
           <li><a href="#tecnologias">Tecnologías</a></li>
           <li><a href="#projects">Proyectos</a></li>
           <li><a href="#Contact">Contacto</a></li>

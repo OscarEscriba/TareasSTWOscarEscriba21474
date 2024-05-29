@@ -1,0 +1,128 @@
+/* Historial.module.css */
+.timelineContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 2.5em;
+    font-family: 'Cursive', sans-serif;
+    margin-bottom: 2rem;
+    animation: fadeInDown 0.5s ease-out;
+  }
+  
+  .timeline {
+    position: relative;
+    width: 80%;
+    max-width: 900px;
+  }
+  
+  .timelineEvent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 2rem 0;
+    animation: fadeIn 1s ease-out;
+  }
+  
+  .timelineEvent:nth-child(odd) .left,
+  .timelineEvent:nth-child(even) .right {
+    visibility: hidden;
+  }
+  
+  .timelineEvent:nth-child(odd) .right,
+  .timelineEvent:nth-child(even) .left {
+    visibility: visible;
+  }
+  
+  .timelineEvent .left,
+  .timelineEvent .right {
+    width: 45%;
+    padding: 1rem;
+    background: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease-out;
+  }
+  
+  .timelineEvent .left {
+    text-align: right;
+    animation-name: slideInLeft;
+  }
+  
+  .timelineEvent .right {
+    text-align: left;
+    animation-name: slideInRight;
+  }
+  
+  .timelineEvent .dot {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #800080;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  .timeline::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    background: #800080;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 0;
+  }
+  
+  .eventContent {
+    padding: 0.5rem;
+    color: #333;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

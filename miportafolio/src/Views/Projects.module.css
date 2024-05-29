@@ -1,3 +1,5 @@
+/* Projects.module.css */
+
 .projectsContainer {
     margin-top: 20px;
     padding: 20px;
@@ -12,39 +14,28 @@
   .column {
     display: flex;
     flex-direction: column;
+    gap: 20px;
+  }
+  
+  .middleColumn {
+    grid-row: span 3; /* Hace que el elemento ocupe 3 filas */
   }
   
   .projectItem {
     position: relative;
     overflow: hidden;
+    border: 1px solid #ccc;
     cursor: pointer;
-    transition: opacity 0.3s ease, transform 0.3s ease;
   }
   
-  .projectItem:hover {
-    opacity: 0.8;
-    transform: scale(1.1);
+  .projectItem img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
   }
   
   .projectOverlay {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    transition: opacity 0.3s ease;
-    opacity: 0;
-  }
-  
-  .projectItem:hover .projectOverlay {
-    opacity: 1;
-  }
-  
-  .modal {
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -53,37 +44,55 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .projectItem:hover .projectOverlay {
+    opacity: 1;
+  }
+  
+  .projectOverlay h3 {
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .modalContent {
     background-color: #fff;
     padding: 20px;
-    border-radius: 5px;
-    max-width: 600px;
-    overflow: hidden;
+    border-radius: 10px;
   }
   
   .close {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 70px;
+    right: 20px;
     cursor: pointer;
+    width: 40px; 
+    height: 40px; 
     font-size: 24px;
-    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+    border-radius: 50%;
   }
   
-  .modalContent h2 {
-    margin-top: 0;
-  }
-  
-  .modalContent p {
-    margin: 10px 0;
-  }
-  
-  .modalContent img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
+  .close:hover {
+    background-color: #999;
+    color: white;
   }
   
