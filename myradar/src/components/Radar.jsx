@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { signOut } from 'firebase/auth'; 
-import { auth } from '../firebaseConfig'; 
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebaseConfig';
 import './Radar.css';
 
 const Radar = () => {
@@ -17,7 +17,11 @@ const Radar = () => {
         return axios.get('https://us-central1-radar-25a52.cloudfunctions.net/api/locations');
       })
       .then(response => {
-        setLocations(response.data);
+        const data = response.data.map(item => ({
+          latitude: item.location?.latitude || item.latitude,
+          longitude: item.location?.longitude || item.longitude,
+        }));
+        setLocations(data);
         setLoading(false);
       })
       .catch(error => {
@@ -46,8 +50,8 @@ const Radar = () => {
   const handleLogout = async () => {
     try {
       setLoading(true);
-      await signOut(auth);
       await deleteLocation();
+      await signOut(auth);
       setLoading(false);
       alert('Logout successful!');
     } catch (error) {
@@ -70,42 +74,6 @@ const Radar = () => {
     }
   };
 
-  const calculatePosition = (targetLocation) => {
-    const userLat = userLocation.latitude;
-    const userLng = userLocation.longitude;
-    const targetLat = targetLocation.latitude;
-    const targetLng = targetLocation.longitude;
-
-    // Convertir coordenadas a radianes
-    const toRadians = (angle) => angle * (Math.PI / 180);
-    const φ1 = toRadians(userLat);
-    const φ2 = toRadians(targetLat);
-    const Δλ = toRadians(targetLng - userLng);
-
-    // Calcular distancia y ángulo
-    const y = Math.sin(Δλ) * Math.cos(φ2);
-    const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
-    const bearing = Math.atan2(y, x);
-
-    // Convertir a grados y ajustar el ángulo
-    const toDegrees = (angle) => (angle * 180) / Math.PI;
-    const angle = toDegrees(bearing) - 90;
-
-    // Calcular la distancia
-    const R = 6371; // Radio de la Tierra en km
-    const d = Math.acos(Math.sin(φ1) * Math.sin(φ2) + Math.cos(φ1) * Math.cos(φ2) * Math.cos(Δλ)) * R;
-
-    // Escalar la distancia para que quepa en el radar
-    const scaleFactor = 50; // Factor de escala, ajusta según sea necesario
-    const distance = Math.min(d * scaleFactor, 100); // Limitar la distancia a 100px
-
-    // Calcular las coordenadas del punto en el radar
-    const radarX = (Math.cos(bearing) * distance).toFixed(2);
-    const radarY = (Math.sin(bearing) * distance).toFixed(2);
-
-    return { x: radarX, y: radarY };
-  };
-
   return (
     <div className="radar-container">
       <h2>Radar</h2>
@@ -114,14 +82,20 @@ const Radar = () => {
       ) : (
         <>
           <div className="radar">
-            <div className="user-location"></div>
+            {userLocation && (
+              <div className="user-location" style={{ top: '50%', left: '50%' }}></div>
+            )}
             {locations.map((location, index) => {
-              const position = calculatePosition(location);
+              const offsetX = (location.latitude - userLocation.latitude) * 1000;
+              const offsetY = (location.longitude - userLocation.longitude) * 1000;
               return (
                 <div
                   key={index}
                   className="target"
-                  style={{ top: `calc(50% + ${position.y}px)`, left: `calc(50% + ${position.x}px)` }}
+                  style={{
+                    top: `${50 + offsetY}%`,
+                    left: `${50 + offsetX}%`,
+                  }}
                 ></div>
               );
             })}

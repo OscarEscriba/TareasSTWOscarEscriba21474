@@ -1,38 +1,33 @@
-/* Estilo del contenedor principal */
 .radar-container {
     text-align: center;
+    padding: 20px;
   }
   
-  /* Estilo del radar */
   .radar {
-    width: 300px; /* Ancho del radar */
-    height: 300px; /* Altura del radar */
+    width: 300px;
+    height: 300px;
     position: relative;
-    border: 2px solid #333; /* Borde del radar */
-    border-radius: 50%; /* Forma circular */
-    overflow: hidden; /* Ocultar contenido fuera del círculo */
+    border: 2px solid #333;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    background: radial-gradient(circle, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%);
   }
   
-  /* Estilo del punto que representa la ubicación del usuario */
   .user-location {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 10px; /* Ancho del punto */
-    height: 10px; /* Altura del punto */
-    background-color: red; /* Color del punto */
-    border-radius: 50%; /* Forma circular */
-    z-index: 2; /* Colocar sobre otros elementos */
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius: 50%;
+    z-index: 2;
   }
   
-  /* Estilo de los puntos objetivos en el radar */
   .target {
     position: absolute;
-    width: 8px; /* Ancho del punto objetivo */
-    height: 8px; /* Altura del punto objetivo */
-    background-color: blue; /* Color del punto objetivo */
-    border-radius: 50%; /* Forma circular */
+    width: 8px;
+    height: 8px;
+    background-color: blue;
+    border-radius: 50%;
   }
-  
   
