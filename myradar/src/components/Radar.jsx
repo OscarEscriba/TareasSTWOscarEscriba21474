@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate para redirigir al usuario
 import './Radar.css';
 
 const Radar = () => {
   const [loading, setLoading] = useState(false);
   const [locations, setLocations] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
+  const navigate = useNavigate(); // Obtener la función navigate para redirigir al usuario
 
   useEffect(() => {
     setLoading(true);
@@ -54,6 +56,7 @@ const Radar = () => {
       await signOut(auth);
       setLoading(false);
       alert('Logout successful!');
+      navigate('/'); // Redirigir a login
     } catch (error) {
       console.error('Error logging out:', error);
       setLoading(false);
@@ -100,7 +103,7 @@ const Radar = () => {
               );
             })}
           </div>
-          <button onClick={handleLogout}>Logout</button>
+          <button className="logout-button" onClick={handleLogout}>Logout</button>
         </>
       )}
     </div>

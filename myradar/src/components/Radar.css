@@ -31,3 +31,23 @@
     border-radius: 50%;
   }
   
+.logout-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #dc3545; /* Color rojo */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #c82333; /* Color rojo más oscuro al pasar el ratón */
+}
+
+.logout-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

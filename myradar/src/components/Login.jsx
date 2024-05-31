@@ -3,6 +3,7 @@ import axios from 'axios';
 import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth'; // Importar los métodos necesarios de Firebase Authentication
 import { auth } from '../firebaseConfig'; // Importar la instancia de autenticación de Firebase
 import { useNavigate } from 'react-router-dom'; // Importar useNavigate para redirigir al usuario
+import './LoginWithGoogle.css'; // Importar el archivo de estilos CSS
 
 const LoginWithGoogle = () => {
   const [loading, setLoading] = useState(false);
@@ -61,12 +62,12 @@ const LoginWithGoogle = () => {
   };
 
   return (
-    <div>
-      <h2>Login With Google</h2>
-      <button onClick={handleLoginWithGoogle} disabled={loading}>
-        {loading ? 'Logging in...' : 'Login with Google'}
-      </button>
-    </div>
+    <div className="login-container">
+    <h2 className="login-header">Login With Google</h2>
+    <button className="login-button" onClick={handleLoginWithGoogle} disabled={loading}>
+      {loading ? 'Logging in...' : 'Login with Google'}
+    </button>
+  </div>
   );
 };
 
