@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
-import { useNavigate } from 'react-router-dom'; // Importar useNavigate para redirigir al usuario
+import { useNavigate } from 'react-router-dom';
 import './Radar.css';
 
 const Radar = () => {
   const [loading, setLoading] = useState(false);
   const [locations, setLocations] = useState([]);
   const [userLocation, setUserLocation] = useState(null);
-  const navigate = useNavigate(); // Obtener la función navigate para redirigir al usuario
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -56,7 +56,7 @@ const Radar = () => {
       await signOut(auth);
       setLoading(false);
       alert('Logout successful!');
-      navigate('/'); // Redirigir a login
+      navigate('/');
     } catch (error) {
       console.error('Error logging out:', error);
       setLoading(false);
@@ -77,6 +77,19 @@ const Radar = () => {
     }
   };
 
+  const calculateOffset = (userLat, userLng, locLat, locLng) => {
+    const distance = Math.sqrt(Math.pow(locLat - userLat, 2) + Math.pow(locLng - userLng, 2));
+    const angle = Math.atan2(locLng - userLng, locLat - userLat);
+    const maxDistance = 0.01; // Ajusta este valor para tu rango máximo
+
+    const normalizedDistance = Math.min(distance / maxDistance, 1);
+
+    return {
+      offsetX: normalizedDistance * 50 * Math.cos(angle),
+      offsetY: normalizedDistance * 50 * Math.sin(angle)
+    };
+  };
+
   return (
     <div className="radar-container">
       <h2>Radar</h2>
@@ -89,8 +102,7 @@ const Radar = () => {
               <div className="user-location" style={{ top: '50%', left: '50%' }}></div>
             )}
             {locations.map((location, index) => {
-              const offsetX = (location.latitude - userLocation.latitude) * 1000;
-              const offsetY = (location.longitude - userLocation.longitude) * 1000;
+              const { offsetX, offsetY } = calculateOffset(userLocation.latitude, userLocation.longitude, location.latitude, location.longitude);
               return (
                 <div
                   key={index}

@@ -1,41 +1,40 @@
+/* Radar.css */
 .radar-container {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .radar {
-    width: 300px;
-    height: 300px;
-    position: relative;
-    border: 2px solid #333;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto;
-    background: radial-gradient(circle, rgba(255,255,255,0) 50%, rgba(0,0,0,0.1) 50%);
-  }
-  
-  .user-location {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: red;
-    border-radius: 50%;
-    z-index: 2;
-  }
-  
-  .target {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    background-color: blue;
-    border-radius: 50%;
-  }
-  
+  text-align: center;
+}
+
+.radar {
+  position: relative;
+  width: 400px; /* Ajusta este valor según tus necesidades */
+  height: 400px; /* Ajusta este valor según tus necesidades */
+  margin: 0 auto;
+  background-color: #f0f0f0;
+  border: 2px solid #000;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.user-location {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.target {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: blue;
+  border-radius: 50%;
+}
+
 .logout-button {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 18px;
-  background-color: #dc3545; /* Color rojo */
+  background-color: #dc3545;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -44,7 +43,7 @@
 }
 
 .logout-button:hover {
-  background-color: #c82333; /* Color rojo más oscuro al pasar el ratón */
+  background-color: #c82333;
 }
 
 .logout-button:disabled {
